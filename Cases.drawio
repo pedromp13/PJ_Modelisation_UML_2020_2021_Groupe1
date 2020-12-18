@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-12-18T12:13:06.856Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 OPR/72.0.3815.400" etag="4GF0LmnK__-8N_uFVAaj" version="14.0.5" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-18T12:20:47.705Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 OPR/72.0.3815.400" etag="xPAHUfQQffzoey0h46xw" version="14.0.5" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="2036" dy="671" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2554" dy="959" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -130,16 +130,22 @@
           <mxGeometry y="34" width="90" height="20" as="geometry" />
         </mxCell>
         <mxCell id="GPTz1_Q5hdU3rCjX2nhV-81" value="CaseGrise" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;sketch=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="270" y="210" width="90" height="34" as="geometry" />
+          <mxGeometry x="270" y="210" width="90" height="54" as="geometry" />
         </mxCell>
         <mxCell id="GPTz1_Q5hdU3rCjX2nhV-83" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="GPTz1_Q5hdU3rCjX2nhV-81" vertex="1">
           <mxGeometry y="26" width="90" height="8" as="geometry" />
         </mxCell>
+        <mxCell id="7M6Y7YnW7jImlduHJxVL-0" value="&lt;span style=&quot;text-align: left&quot;&gt;-EventCase()&lt;br&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="GPTz1_Q5hdU3rCjX2nhV-81">
+          <mxGeometry y="34" width="90" height="20" as="geometry" />
+        </mxCell>
         <mxCell id="GPTz1_Q5hdU3rCjX2nhV-85" value="EtendueEau" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;sketch=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="380" y="210" width="100" height="34" as="geometry" />
+          <mxGeometry x="380" y="210" width="100" height="54" as="geometry" />
         </mxCell>
         <mxCell id="GPTz1_Q5hdU3rCjX2nhV-87" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="GPTz1_Q5hdU3rCjX2nhV-85" vertex="1">
           <mxGeometry y="26" width="100" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="7M6Y7YnW7jImlduHJxVL-1" value="&lt;span style=&quot;text-align: left&quot;&gt;-EventCase()&lt;br&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="GPTz1_Q5hdU3rCjX2nhV-85">
+          <mxGeometry y="34" width="100" height="20" as="geometry" />
         </mxCell>
         <mxCell id="GPTz1_Q5hdU3rCjX2nhV-89" value="Bar&#xa;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;sketch=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="1060" y="206" width="90" height="54" as="geometry" />

@@ -1,18 +1,18 @@
 package application;
 
 public class ville {
-        private int n;//nombre de ligne
+        public int n;//nombre colonne
 
-        private int m;//nombre de colonne
+        public int m;//nombre de ligne
 
-        private char [][] ville;
+        public char [][] ville;
 
         // Constructeur
 
-        public ville(int longueur, int largeur) {
+        public ville(int x, int y) {
 
-            this.n = longueur;
-            this.m = largeur;
+            this.n = x;
+            this.m = y;
 
             ville = new char[n][m];
 
@@ -28,9 +28,9 @@ public class ville {
 
         // pour acceder a une case
 
-        public char getCase(int l, int c) {
+        public char getCase(int x, int y) {
 
-            return ville[l][c];
+            return ville[x][y];
 
         }
 
@@ -50,7 +50,29 @@ public class ville {
 
 
         }
+        //placer un element dans batiment
+    public void placer(int x, int y, char t) {
+
+        // Test si on se trouve bien dans la grille.
+        if(x < 0 || y < 0 || x > n || y > m) {
+
+            System.out.print("Erreur de placement.");
+            return;
+        }
+
+        if(ville[x][y] == '.') // on place l'element t
+        {
+            ville[x][x] = t;
+        }
+        else
+        {
+            System.out.print("Erreur, cet emplacement n'est pas vide.");
+            return;
+        }
 
 
     }
+
+
+
 }

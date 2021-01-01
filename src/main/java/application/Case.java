@@ -1,4 +1,5 @@
 package application;
 
-public class case {
+public class Case  {
+
 }

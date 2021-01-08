@@ -74,7 +74,7 @@ class bar extends CaseBatiment {
     }
 
 }
- class Main {
+class Main {
     public static void main(String[] args) {
         bar un = new bar();
         personnage me= new personnage(1,"essaid");

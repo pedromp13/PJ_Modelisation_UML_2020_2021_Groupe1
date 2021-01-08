@@ -9,7 +9,7 @@ public  class personnage {
     protected String pseudo;
     protected int xPerso;
     protected int yPerso;
-
+    protected boolean maillot ; //pour aller dans un d'eau
     public personnage(int type, String pseudo) {
         //1->standard 2->hyppie 3 ->pressé
         switch (type) {
@@ -22,6 +22,7 @@ public  class personnage {
                 this.pseudo = pseudo;
                 this.xPerso = 0;
                 this.yPerso = 0;
+                this.maillot= false;
                 break;
             case 2:
                 this.vie = 75;
@@ -32,6 +33,7 @@ public  class personnage {
                 this.pseudo = pseudo;
                 this.xPerso = 0;
                 this.yPerso = 0;
+                this.maillot= false;
                 break;
 
             case 3:
@@ -43,6 +45,7 @@ public  class personnage {
                 this.pseudo = pseudo;
                 this.xPerso = 0;
                 this.yPerso = 0;
+                this.maillot= false;
                 break;
 
             default:
@@ -50,6 +53,7 @@ public  class personnage {
 
         }
     }
+
 
     public int getVie() {
         return vie;
@@ -83,6 +87,10 @@ public  class personnage {
         return yPerso;
     }
 
+    public boolean isMaillot() {
+        return maillot;
+    }
+
     public void setVie(int vie) {
         this.vie += vie;
     }
@@ -114,45 +122,66 @@ public  class personnage {
     public void setyPerso(int yPerso) {
         this.yPerso = yPerso;
     }
+
+    public void setMaillot(boolean maillot) {
+        this.maillot = maillot;
+    }
+
     //savoir si personnage est toujours  en vie
     public boolean vivant(personnage perso){
-        if(perso.vie == 0 || perso.hydratation == 0 || perso.moral == 0 || perso.satiété==0){
+        if(perso.vie <= 0 || perso.hydratation <= 0 || perso.moral <= 0 || perso.satiété<=0){
+            perso=null; // l'objet personnage sera supprimé par garbage collector
             return false;
+
         }
         else{
             return true ;
         }
 
     }
-    public void malade(personnage perso){
 
-        if (perso.vie > 10){
-            perso.setMoral(-10);
+    // differentes actions qui permettent de bouster les barres aux max
+    public void malade(){
+
+        if (this.vie > 10){
+            this.setVie(-10);
         }
         else{
-            System.out.println("le personnage " +perso.getPseudo() +" est mort" );
+            System.out.println("le personnage " +this.getPseudo() +" est mort" );
+
         }
 
     }
-
+    public void boire(){
+        this.hydratation = 100 ;
+    }
+    public void manger(){
+        this.satiété = 100;
+    }
+    public void sesoigner(){
+        this.vie = 100;
+    }
+    public void divertir(){
+        this.moral = 100;
+    }
 
 
     //methode pour deplacer le personnage dans la ville
     public void deplacerPersonnage(int direction) {
         switch (direction) {
-            //droite
+            //bas
             case 1:
                 this.xPerso++;
                 break;
-            //gauche
+            //haut
             case 2:
                 this.xPerso--;
                 break;
-            //haut
+            //droite
             case 3:
                 this.yPerso++;
                 break;
-            //bas
+            //gauche
             case 4:
                 this.yPerso--;
                 break;
@@ -168,15 +197,21 @@ class main{
 
     public static void main(String[] args) {
             personnage perso= new personnage(3,"essaid") ;
-            boolean vivant = perso.vivant(perso);
-            if (vivant == true){
-                System.out.println("je suis vivant ");
+            perso.setVie(-100);
+            boolean vie = perso.vivant(perso);
+            if(vie==false){
+                System.out.println(" je suis mort");
 
             }
-            else{
-                System.out.println("je suis mort ");
 
-            }
+            System.out.println(perso.getVie() +" st tombé malade");
+
+
+
+
+
+
+
 
 
         }

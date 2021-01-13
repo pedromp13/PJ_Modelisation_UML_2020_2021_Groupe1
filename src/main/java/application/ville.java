@@ -1,5 +1,9 @@
 package application;
 
+
+import java.util.Random;
+import java.util.Scanner;
+
 public class ville {
         public int n;//nombre de ligne
 
@@ -50,51 +54,133 @@ public class ville {
 
 
         }
-        //placer un element dans batiment
-    public void placer(int x, int y, char t) {
 
-        // Test si on se trouve bien dans la grille.
+
+      //placer aleatoirement les pieges dans les trottoir et les routes
+    public static boolean placePiege () {
+        Random random = new Random();
+        int ran=random.nextInt(100 - 1) +1;
+        if (ran<6)return true;
+        else return false;
+    }
+
+
+
+        //placer un element dans batiment
+
+    public void placer(int x, int y, char t) {
+            // Test si on se trouve bien dans la grille.
         if(x < 0 || y < 0 || x > n || y > m) {
 
             System.out.print("Erreur de placement.");
             return;
         }
 
-        if(ville[x][y] == '.') // on place l'element t
+        if(ville[x][y] == '.')
         {
+            if (t=='-'){ // placer les pieges sur les trottoir et les routes
+                boolean piege=placePiege();
+                if (piege == true){
+                    ville[x][y]='%' ;
+                    return;
+                }
+                else{
+                    ville[x][y]=t;
+                    return ;
+                }
+            }
+            else if(t=='='){
+                boolean piege=placePiege();
+                if (piege == true){
+                    ville[x][y]='$' ;
+                    return;
+                }
+                else{
+                    ville[x][y]=t;
+                    return ;
+                }
+
+            }
+            else {
+                ville[x][y] = t;
+                return;
+            }
+        }
+        //personnage deplace sur le trottoir ou sur une route
+        else if(ville[x][y] =='-' || ville[x][y] == '=' ){
             ville[x][y] = t;
             return;
         }
-        else if(ville[x][y] == 'x')
+        //personnage dans la maison
+        else if(ville[x][y] == 'M'  ){
+
+            System.out.println("personage est dans la maison ");
+
+
+        }
+        //personnage dans l'université
+        else if (ville[x][y] == 'U'){
+            System.out.println("personage est entree dans l'université");
+
+        }
+        //personnage dans le fastFoot
+        else if(ville[x][y] =='F'){
+            System.out.println("personage est entree dans le Fastfood");
+
+        }
+        //personnage en bibiotheque
+        else if(ville[x][y] =='b'){
+            System.out.println("personage est entree dans la bibiotheque");
+
+        }
+        //personnage en bar
+        else if(ville[x][y] =='B'){
+            System.out.println("personage est entree dans le Bar");
+
+
+        }
+        //case non batiments
+        else if(ville[x][y] =='f'){
+
+            System.out.println("personage est entree dans la foret");
+            ville[x][y] = t;
+            return;
+
+        }
+        //personage dans un entendu d'eau
+        else if(ville[x][y] =='e'){
+            System.out.println("personage est entree dans un etendue d'eau");
+            ville[x][y] = t;
+            return;
+
+        }
+        //case grise
+        else if(ville[x][y] == 'X')
         { // si la case est une case grise
-            System.out.println("c'est une case grise impossible de s'y rendre");
+            System.out.println("c'est une case grise impossible de s'y rendre ! il faut sortir immédiatement ");
             return;
         }
-        else
-        {
-            System.out.print("Erreur, cet emplacement n'est pas vide.");
-             return;
-        }
+
 
 
     }
-
-
-
-
-
 }
-class Test {
+class Test2 {
     public static void main(String[] args) {
         ville avignon = new ville(10, 10);
-        personnage perso= new personnage(1,"P");
+        personnage perso= new personnage(1,"V");
         //batiments de la ville
-        avignon.placer(7, 1, 'B');// bar
-        avignon.placer(1, 8, 'U');//université
-        avignon.placer(5, 6, 'F');//fastfood
-        avignon.placer(1, 1, 'M');//maison
-        avignon.placer(7, 8, 'b');//bibiotheque
-        //avignon.placer(perso.getxPerso(),perso.getyPerso(),'S');
+        bar batB = new bar();
+        avignon.placer(7, 1, batB.getName());// bar
+        université batU = new université();
+        avignon.placer(1, 8, batU.getName());//université
+        fastfood batF=new fastfood();
+        avignon.placer(5, 6, batF.getName());//fastfood
+        maison batM =new maison();
+        avignon.placer(1, 1, batM.getName());//maison
+        bibliotheque batb =new bibliotheque();
+        avignon.placer(7, 8, batb.getName());//bibiotheque
+
         //placement des routes
         avignon.placer(1, 2, '=');//route entre maison et universite
         avignon.placer(1, 3, '=');
@@ -103,13 +189,15 @@ class Test {
         avignon.placer(1, 6, '=');
         avignon.placer(1, 7, '=');
 
-        avignon.placer(1, 8, '=');//université
+
+
         avignon.placer(2, 8, '=');
         avignon.placer(3, 8, '=');
         avignon.placer(4, 8, '=');
         avignon.placer(5, 8, '=');
-        avignon.placer(5, 8, '=');
+
         avignon.placer(6, 8, '=');
+        avignon.placer(5, 7, '=');
 
         avignon.placer(7, 7, '=');//bibiotheque
         avignon.placer(7, 6,'=');
@@ -165,23 +253,79 @@ class Test {
         avignon.placer(8, 3, '-');
         avignon.placer(8, 2, '-');
         avignon.placer(8, 1, '-');
+
         //placement des case grises
+        avignon.placer(0, 0, 'X');
+        avignon.placer(0, 9, 'X');
+        avignon.placer(9, 9, 'X');
+        avignon.placer(8, 9,'X');
         avignon.placer(4, 7, 'X');
         avignon.placer(4, 6, 'X');
         avignon.placer(3, 7, 'X');
         avignon.placer(3, 6,'X');
+        avignon.placer(9, 8, 'X');
+        avignon.placer(9, 7, 'X');
+        avignon.placer(9, 6, 'X');
+        avignon.placer(9, 5,'X');
+        avignon.placer(9, 4, 'X');
+        avignon.placer(9, 3, 'X');
+        avignon.placer(9, 2,'X');
+        avignon.placer(9, 1, 'X');
+        avignon.placer(9, 0,'X');
+        avignon.placer(8, 0, 'X');
+        avignon.placer(7, 0, 'X');
+        avignon.placer(6, 0,'X');
+        avignon.placer(5, 0, 'X');
+        avignon.placer(4, 0,'X');
+        avignon.placer(3, 0,'X');
+        avignon.placer(2, 0, 'X');
+        avignon.placer(1, 0,'X');
+        avignon.placer(2, 5, 'X');
+        avignon.placer(2, 6,'X');
+        avignon.placer(2, 7, 'X');
+        avignon.placer(3, 5,'X');
+        avignon.placer(4, 5,'X');
+        avignon.placer(5, 5, 'X');
+        avignon.placer(6, 5,'X');
+        avignon.placer(4, 4,'X');
+        avignon.placer(5, 4, 'X');
+        avignon.placer(6, 4,'X');
+        avignon.placer(6, 2,'X');
+        avignon.placer(6, 3, 'X');
+        avignon.placer(6, 6,'X');
+        avignon.placer(6, 7, 'X');
+
         //placement de la forêt
-        avignon.placer(2, 2, 'f');
-        avignon.placer(2, 3, 'f');
-        avignon.placer(3, 2, 'f');
-        avignon.placer(3, 3,'f');
-        avignon.placer(2, 4, 'f');
-        avignon.placer(3, 4,'f');
+        forêt f= new forêt();
+        avignon.placer(2, 2,f.getNom() );
+        avignon.placer(2, 3, f.getNom());
+        avignon.placer(3, 2, f.getNom());
+        avignon.placer(3, 3,f.getNom());
+        avignon.placer(2, 4,f.getNom());
+        avignon.placer(3, 4,f.getNom());
+
         //placement des etendues d'eau
-        avignon.placer(4, 2, 'e');
-        avignon.placer(4, 3,'e');
-        avignon.placer(5, 2, 'e');
-        avignon.placer(5, 3,'e');
+        etendueEau e=new etendueEau();
+        avignon.placer(4, 2, e.getNom());
+        avignon.placer(4, 3,e.getNom());
+        avignon.placer(5, 2, e.getNom());
+        avignon.placer(5, 3,e.getNom());
+
+
+
+
+
+        //1 bas 2 haut 3 droite 4 gauche
+
+        for(int i =0 ;i<3;i++) {
+            Scanner clavier = new Scanner(System.in);
+            System.out.print("deplacer le personnage : 1-bas 2-haut 3-droite 4-gauche 5-afficher Les Stats :");
+            int direction = clavier.nextInt();
+            perso.deplacerPersonnage(direction);
+            avignon.placer(perso.getxPerso(), perso.getyPerso(), 'V');
+            avignon.afficher();
+
+        }
 
 
 
@@ -189,25 +333,49 @@ class Test {
 
 
 
-
-
-
-
-
-
-        perso.deplacerPersonnage(3);// gauche
-        perso.deplacerPersonnage(3);// gauche
         perso.deplacerPersonnage(3);
+        perso.deplacerPersonnage(1);
         perso.deplacerPersonnage(3);
-        perso.deplacerPersonnage(2);
-        perso.deplacerPersonnage(1);//bas
+        perso.deplacerPersonnage(1);
+        perso.deplacerPersonnage(1);
+        perso.deplacerPersonnage(1);
+        perso.deplacerPersonnage(1);
+        perso.deplacerPersonnage(1);
+        perso.deplacerPersonnage(1);
+        perso.deplacerPersonnage(4);
 
+       // perso.deplacerPersonnage(3);
+        char position=avignon.getCase(perso.getxPerso(),perso.getyPerso());
+        if(position=='M'){
+            batM.ressourcer(perso);
+        }
+        else if(position=='B'){
+            batB.ressourcer(perso);
+        }
+        else if( position=='F'){
+            batF.ressourcer(perso);
+        }
+        else if(position=='b'){
+            batb.ressourcer(perso);
+        }
+        else if(position=='f'){
+            f.tomberMalade(perso);
+            System.out.println("Le Personnage malheureusement est tomber Malade -10 sur sa  barre de vie");
 
-      //  perso.deplacerPersonnage(4);
+        }
+        else if( position=='e'){
+            e.aller(perso);
+        }
+        System.out.println("Position ligne  :"+perso.getxPerso());
+        System.out.println("Position colonne : "+perso.getyPerso());
+        System.out.println( "moral :"+perso.getMoral());
+        System.out.println("satiete : "+perso.getSatiété());
+        System.out.println( "hydratation :"+perso.getHydratation());
+        System.out.println("vie  :"+perso.getVie());
+        System.out.println( "diplome :"+perso.getDiplome());
+        System.out.println("Pseudo :"+perso.getPseudo());
 
-        //avignon.placer(perso.getxPerso(),perso.getyPerso(),'S');
-        System.out.println( "ligne "+perso.getxPerso());
-        System.out.println("colonne "+perso.getyPerso());
+        avignon.placer(perso.getxPerso(),perso.getyPerso(),'V');
         avignon.afficher();
         
 

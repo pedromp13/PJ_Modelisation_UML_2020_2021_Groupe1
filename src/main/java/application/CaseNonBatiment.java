@@ -4,6 +4,7 @@ public class CaseNonBatiment  extends Case{
     public CaseNonBatiment(){}
 }
 class etendueEau extends  CaseNonBatiment{
+    private char nom='e';
     //autoriser le personnage a aller se baigner
     public void aller(personnage perso){
         if(perso.maillot == true){
@@ -15,11 +16,21 @@ class etendueEau extends  CaseNonBatiment{
         }
 
     }
+
+    public char getNom() {
+        return nom;
+    }
 }
 class forêt extends CaseNonBatiment{
+    private char nom='f';
     //risque de tomber malade
     public void tomberMalade(personnage perso){
         perso.malade();
+
+    }
+
+    public char getNom() {
+        return nom;
     }
 }
 //pour la case grise c'est deja fait dans la ville

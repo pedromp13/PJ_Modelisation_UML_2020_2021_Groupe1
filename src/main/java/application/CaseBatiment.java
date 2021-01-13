@@ -1,16 +1,16 @@
 package application;
 
-public class CaseBatiment extends Case{
+public class CaseBatiment {
     public CaseBatiment(){}
 
 }
 class maison extends CaseBatiment{
 
-    private  String nom ;
+    private  char nom ;
     public maison(){
-        this.nom="M";
+        this.nom='M';
     }
-    public String getName(){
+    public char getName(){
         return nom;
     }
     public void ressourcer(personnage perso){
@@ -18,24 +18,26 @@ class maison extends CaseBatiment{
         perso.setSatiété(10);
         perso.setHydratation(10);
     }
+
 }
 class université extends CaseBatiment{
-    private  String nom ;
+    private  char nom ;
     public université(){
-        this.nom="U";
+        this.nom='U';
     }
-    public String getName(){
+    public char getName(){
         return nom;
     }
 
 
+
 }
 class fastfood extends CaseBatiment{
-    private  String nom ;
+    private  char nom ;
     public fastfood(){
-        this.nom="F";
+        this.nom='F';
     }
-    public String getName(){
+    public char getName(){
         return nom;
     }
     public void ressourcer(personnage perso){
@@ -47,11 +49,11 @@ class fastfood extends CaseBatiment{
 
 }
 class bibliotheque extends CaseBatiment{
-    private  String nom ;
+    private  char nom='b' ;
     public bibliotheque(){
-        this.nom="b";
+        this.nom='b';
     }
-    public String getName(){
+    public char getName(){
         return nom;
     }
     public void ressourcer(personnage perso){
@@ -59,12 +61,12 @@ class bibliotheque extends CaseBatiment{
     }
 }
 class bar extends CaseBatiment {
-    private String nom ;
+    private char nom ;
 
     public bar(){
-        this.nom="B" ;
+        this.nom='B' ;
     }
-    public String getName() {
+    public char getName() {
         return nom;
     }
     public void ressourcer(personnage perso){
@@ -74,14 +76,15 @@ class bar extends CaseBatiment {
     }
 
 }
-class Main {
+class test {
     public static void main(String[] args) {
         bar un = new bar();
         personnage me= new personnage(1,"essaid");
-        String result =un.getName();
+        char result =un.getName();
         System.out.println("je suis le bar a :");
         System.out.println(result);
         un.ressourcer(me);
+
         System.out.println("je viens de passer dans un bar mon hydratation a augmenter de 25 : " + me.getHydratation());
     }
 }

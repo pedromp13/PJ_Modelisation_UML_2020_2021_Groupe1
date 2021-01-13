@@ -171,6 +171,7 @@ public  class personnage {
         switch (direction) {
             //bas
             case 1:
+
                 this.xPerso++;
                 break;
             //haut
@@ -206,15 +207,7 @@ class main{
 
             System.out.println(perso.getVie() +" st tombé malade");
 
-
-
-
-
-
-
-
-
-        }
+    }
 }
 
 

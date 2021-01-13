@@ -316,7 +316,7 @@ class Test2 {
 
 
         //1 bas 2 haut 3 droite 4 gauche
-
+/*
         for(int i =0 ;i<3;i++) {
             Scanner clavier = new Scanner(System.in);
             System.out.print("deplacer le personnage : 1-bas 2-haut 3-droite 4-gauche 5-afficher Les Stats :");
@@ -326,6 +326,8 @@ class Test2 {
             avignon.afficher();
 
         }
+        */
+
 
 
 

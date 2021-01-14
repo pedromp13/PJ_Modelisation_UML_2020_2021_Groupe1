@@ -1,5 +1,8 @@
 package application;
 
+import java.util.Random;
+
+
 public class CaseBatiment {
     public CaseBatiment(){}
 
@@ -27,6 +30,21 @@ class université extends CaseBatiment{
     }
     public char getName(){
         return nom;
+    }
+    public void passerExamem(personnage perso){
+        int pourcentage=perso.getpourcentageDiplome();
+        Random rand=new Random();
+        int rando=rand.nextInt(100 - 1) +1;
+        if (rando<pourcentage){
+            perso.setDiplome(1);
+            System.out.println("vous avez reussi votre exament");
+            perso.setpourcentageDiplome(0);
+        }
+        else {
+            perso.setpourcentageDiplome(pourcentage+30);
+        }
+
+
     }
 
 
@@ -59,6 +77,14 @@ class bibliotheque extends CaseBatiment{
     public void ressourcer(personnage perso){
         perso.setMoral(20);
     }
+    public void foundBook(personnage perso) {
+        int pourcentage=perso.getpourcentageDiplome();
+        Random rand=new Random();
+        int rando=rand.nextInt(100 - 1) +1;
+        if (rando<5){
+            perso.setpourcentageDiplome(pourcentage+10);
+        }
+    }
 }
 class bar extends CaseBatiment {
     private char nom ;
@@ -74,19 +100,15 @@ class bar extends CaseBatiment {
         perso.setMoral(10);
         perso.setVie(-3);
     }
-
-}
-class test {
-    public static void main(String[] args) {
-        bar un = new bar();
-        personnage me= new personnage(1,"essaid");
-        char result =un.getName();
-        System.out.println("je suis le bar a :");
-        System.out.println(result);
-        un.ressourcer(me);
-
-        System.out.println("je viens de passer dans un bar mon hydratation a augmenter de 25 : " + me.getHydratation());
+    public void foundCopie(personnage perso) {
+        int pourcentage=perso.getpourcentageDiplome();
+        Random randi=new Random();
+        int rando=randi.nextInt(100 - 1) +1;
+        if (rando<5){
+            perso.setpourcentageDiplome(pourcentage+5);
+        }
     }
+
 }
 
 

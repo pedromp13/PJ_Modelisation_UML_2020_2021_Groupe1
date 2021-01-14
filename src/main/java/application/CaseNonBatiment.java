@@ -1,6 +1,6 @@
 package application;
 
-public class CaseNonBatiment  extends Case{
+public class CaseNonBatiment  {
     public CaseNonBatiment(){}
 }
 class etendueEau extends  CaseNonBatiment{
@@ -59,3 +59,5 @@ class  trottoir extends CaseNonBatiment{
         perso.setSatiété(-1);
     }
 }
+
+

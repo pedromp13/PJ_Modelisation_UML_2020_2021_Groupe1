@@ -65,6 +65,73 @@ public class ville {
     }
 
 
+package application;
+
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class ville {
+        public int n;//nombre de ligne
+
+        public int m;//nombre de colonne
+
+        public char [][] ville;
+
+        // Constructeur
+
+        public ville(int x, int y) {
+
+            this.n = x;
+            this.m = y;
+
+            ville = new char[n][m];
+
+            for(int i = 0; i < n ; i++) {
+
+                for(int j = 0 ; j < m; j++) {
+
+                    ville[i][j] = '.';
+                }
+            }
+
+        }
+
+        // pour acceder a une case
+
+        public char getCase(int x, int y) {
+
+            return ville[x][y];
+
+        }
+
+        // Methode
+
+        public void afficher() {
+
+            for(int i = 0; i < n ; i++) {
+
+                for(int j = 0 ; j < m ; j++) {
+
+                    System.out.print(" | " + ville[i][j]);
+                }
+
+                System.out.println(" | ");
+            }
+
+
+        }
+
+
+      //placer aleatoirement les pieges dans les trottoir et les routes
+    public static boolean placePiege () {
+        Random random = new Random();
+        int ran=random.nextInt(100 - 1) +1;
+        if (ran<6)return true;
+        else return false;
+    }
+
+
 
         //placer un element dans batiment
 
@@ -160,12 +227,68 @@ public class ville {
             System.out.println("c'est une case grise impossible de s'y rendre ! il faut sortir immédiatement ");
             return;
         }
-
-
-
+   
     }
-}
-class Test2 {
+
+
+    public char getcasesuiv(personnage perso, int dir) {
+    	char n = 0;
+    	  switch (dir) {
+          //bas
+          case 1:
+        	  n=this.getCase(perso.getxPerso()+1,perso.getyPerso());
+        	  return n;
+              
+          //haut
+          case 2:
+        	  n=this.getCase(perso.getxPerso()-1,perso.getyPerso());
+        	  return n;
+              
+          //droite
+          case 3:
+        	  n=this.getCase(perso.getxPerso(),perso.getyPerso()+1);
+        	  return n;
+             
+          //gauche
+          case 4:
+        	  n=this.getCase(perso.getxPerso(),perso.getyPerso()-1);
+        	  return n;
+             
+         }
+    	 return n;
+    }
+    
+   
+    public static void verifPosition(ville avignon,personnage perso, maison batM,université batU,bar batB,bibliotheque batb,fastfood batF,forêt f,etendueEau e) {
+	    char position=avignon.getCase(perso.getxPerso(),perso.getyPerso());
+	    if(position=='M'){
+	        batM.ressourcer(perso);
+	    }
+	    else if (position=='U') {
+	    	batU.passerExamem(perso);
+	    }
+	    else if(position=='B'){
+	        batB.ressourcer(perso);
+	        batB.foundCopie(perso);
+	    }
+	    else if( position=='F'){
+	        batF.ressourcer(perso);
+	    }
+	    else if(position=='b'){
+	        batb.ressourcer(perso);
+	        batb.foundBook(perso);
+	    }
+	    else if(position=='f'){
+	        f.tomberMalade(perso);
+	        System.out.println("Le Personnage malheureusement est tomber Malade -10 sur sa  barre de vie");
+	
+	    }
+	    else if( position=='e'){
+	        e.aller(perso);
+	    }
+	}
+
+
     public static void main(String[] args) {
         ville avignon = new ville(10, 10);
         personnage perso= new personnage(1,"V");
@@ -324,7 +447,6 @@ class Test2 {
             perso.deplacerPersonnage(direction);
             avignon.placer(perso.getxPerso(), perso.getyPerso(), 'V');
             avignon.afficher();
-
         }
         */
 
@@ -335,39 +457,46 @@ class Test2 {
 
 
 
-        perso.deplacerPersonnage(3);
-        perso.deplacerPersonnage(1);
-        perso.deplacerPersonnage(3);
-        perso.deplacerPersonnage(1);
-        perso.deplacerPersonnage(1);
-        perso.deplacerPersonnage(1);
-        perso.deplacerPersonnage(1);
-        perso.deplacerPersonnage(1);
-        perso.deplacerPersonnage(1);
-        perso.deplacerPersonnage(4);
-
+        
+        int i=0;
+        int j=0;
+        char cs;
+        while(i==0){
+        	Scanner clavier = new Scanner(System.in);
+            System.out.print("deplacer le personnage :0-stop 1-bas 2-haut 3-droite 4-gauche 5-afficher Les Stats :");
+            int direction = clavier.nextInt();
+            if (direction==0)i=1;
+            else if(direction==5){
+            	 System.out.println("Position ligne  :"+perso.getxPerso());
+                 System.out.println("Position colonne : "+perso.getyPerso());
+                 System.out.println( "moral :"+perso.getMoral());
+                 System.out.println("satiete : "+perso.getSatiété());
+                 System.out.println( "hydratation :"+perso.getHydratation());
+                 System.out.println("vie  :"+perso.getVie());
+                 System.out.println( "diplome :"+perso.getDiplome());
+                 System.out.println("Pseudo :"+perso.getPseudo());
+                 System.out.println("Pourcentage de Reussite :"+perso.getpourcentageDiplome());
+            }
+            else {
+            	 
+               avignon.placer(perso.getxPerso(), perso.getyPerso(), 'V');
+                 verifPosition(avignon, perso, batM, batU, batB,batb,batF,f, e);
+                 avignon.afficher();
+                 j++;
+            }
+            
+        }
+        
+       
        // perso.deplacerPersonnage(3);
-        char position=avignon.getCase(perso.getxPerso(),perso.getyPerso());
-        if(position=='M'){
-            batM.ressourcer(perso);
-        }
-        else if(position=='B'){
-            batB.ressourcer(perso);
-        }
-        else if( position=='F'){
-            batF.ressourcer(perso);
-        }
-        else if(position=='b'){
-            batb.ressourcer(perso);
-        }
-        else if(position=='f'){
-            f.tomberMalade(perso);
-            System.out.println("Le Personnage malheureusement est tomber Malade -10 sur sa  barre de vie");
+ 
+	       
+	   
 
-        }
-        else if( position=='e'){
-            e.aller(perso);
-        }
+	       // perso.deplacerPersonnage(3);
+	 
+		        
+        
         System.out.println("Position ligne  :"+perso.getxPerso());
         System.out.println("Position colonne : "+perso.getyPerso());
         System.out.println( "moral :"+perso.getMoral());
@@ -376,11 +505,14 @@ class Test2 {
         System.out.println("vie  :"+perso.getVie());
         System.out.println( "diplome :"+perso.getDiplome());
         System.out.println("Pseudo :"+perso.getPseudo());
+        System.out.println("Pourcentage de Reussite :"+perso.getpourcentageDiplome());
 
         avignon.placer(perso.getxPerso(),perso.getyPerso(),'V');
         avignon.afficher();
         
+        
 
     }
 }
+
 

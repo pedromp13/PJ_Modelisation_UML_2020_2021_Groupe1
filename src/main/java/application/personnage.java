@@ -6,6 +6,7 @@ public  class personnage {
     protected int satiété;
     protected int moral;
     protected int diplome;
+    protected int pourcentageDiplome;
     protected String pseudo;
     protected int xPerso;
     protected int yPerso;
@@ -19,6 +20,7 @@ public  class personnage {
                 this.satiété = 75;
                 this.moral = 75;
                 this.diplome = 0;
+                this.pourcentageDiplome = 0;
                 this.pseudo = pseudo;
                 this.xPerso = 0;
                 this.yPerso = 0;
@@ -30,6 +32,7 @@ public  class personnage {
                 this.satiété = 50;
                 this.moral = 100;
                 this.diplome = 0;
+                this.pourcentageDiplome = 0;
                 this.pseudo = pseudo;
                 this.xPerso = 0;
                 this.yPerso = 0;
@@ -42,6 +45,7 @@ public  class personnage {
                 this.satiété = 75;
                 this.moral = 50;
                 this.diplome = 0;
+                this.pourcentageDiplome = 0;
                 this.pseudo = pseudo;
                 this.xPerso = 0;
                 this.yPerso = 0;
@@ -78,6 +82,9 @@ public  class personnage {
     public int getDiplome() {
         return diplome;
     }
+    public int getpourcentageDiplome() {
+        return pourcentageDiplome;
+    }
 
     public int getxPerso() {
         return xPerso;
@@ -109,6 +116,14 @@ public  class personnage {
 
     public void setDiplome(int diplome) {
         this.diplome += diplome;
+    }
+    public void setpourcentageDiplome(int pourcentage) {
+        if (pourcentage<101) {
+            this.pourcentageDiplome=pourcentage;
+        }
+        else {
+            this.pourcentageDiplome=100;
+        }
     }
 
     public void setPseudo(String pseudo) {
@@ -194,24 +209,5 @@ public  class personnage {
     }
 
 }
-class main{
-
-    public static void main(String[] args) {
-            personnage perso= new personnage(3,"essaid") ;
-            perso.setVie(-100);
-            boolean vie = perso.vivant(perso);
-            if(vie==false){
-                System.out.println(" je suis mort");
-
-            }
-
-            System.out.println(perso.getVie() +" st tombé malade");
-
-    }
-}
-
-
-
-
 
 
